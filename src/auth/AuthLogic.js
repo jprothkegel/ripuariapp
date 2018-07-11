@@ -14,6 +14,7 @@ export function signUpUser(email, password, username){
                 username: username
             })
         });
+        
     }
     catch(error){
         console.log(error.toString())
@@ -33,3 +34,14 @@ export function loginUser (email, password, username){
 }
 
 
+export function signOutUser (){
+    try {
+        firebase.auth().signOut()
+        .then(function(){
+            console.log('Signed Out')
+        })
+    }
+    catch(error){
+        console.log(error.toString())
+    }
+}

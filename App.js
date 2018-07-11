@@ -3,8 +3,9 @@ import { StyleSheet, Text, View } from 'react-native';
 import BeerScreen from './src/views/BeerScreen'
 import Test from './src/views/LoginForm';
 import AdminScreen from './src/views/AdminScreen';
+import Router from './src/router/Router';
+import { addNavigationHelpers} from 'react-navigation';
 
-import { createRootNavigator } from './src/router/Router';
 
 import * as firebase from 'firebase';
 
@@ -18,10 +19,5 @@ const firebaseConfig = {
 }
 firebase.initializeApp(firebaseConfig);
 
-export default class App extends React.Component {
-  render() {
-    const Layout = createRootNavigator(signedIn);
-    return <Layout/>
-  }
-}
+export default Router;
 

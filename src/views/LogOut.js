@@ -1,5 +1,6 @@
 import React from 'react';
 import { Container, Header, Content, Form, Item, Input, Label, Button, Text, Right, Title, Body } from 'native-base';
+import SignOut from '../auth/AuthLogic';
 
 export default class LogOut extends React.Component{
     state = {
@@ -23,7 +24,7 @@ export default class LogOut extends React.Component{
             </Header>
 
             <Button block style={styles.button} 
-                
+                onPress = {()=>SignOut()}
             >
                 <Text>Sign Out</Text>
             </Button>
