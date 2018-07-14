@@ -1,6 +1,5 @@
 import React from 'react';
 import { Container, Header, Content, Card, CardItem, Input, Label, Button, Text, Right, Title, Body, Icon } from 'native-base';
-import SignOutUser from '../auth/AuthLogic'
 
 export default class BeerScreen extends React.Component{
     cantCervezas = 0
@@ -23,12 +22,6 @@ export default class BeerScreen extends React.Component{
                     <Body>
                         <Title style={styles.titulo} >Ripuariapp</Title>
                     </Body>
-                    <Right>
-                    <Button transparent>
-                        <Icon Icon type="FontAwesome" name="home" />
-                        onPress = {() => SignOutUser()}
-                    </Button>
-                </Right>
                 </Header>
 
                 <Button block style={styles.button} >
