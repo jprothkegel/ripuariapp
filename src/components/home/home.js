@@ -26,8 +26,8 @@ export class Home extends React.Component {
 
         <View>
           <Text style={title}>User: {email}</Text>
-          <Button onPress={Actions.search} title="Go to Search" />
-          <Button onPress={Actions.todolist} title="Start To-Do List" />
+          {/* <Button onPress={Actions.search} title="Go to Search" />
+          <Button onPress={Actions.todolist} title="Start To-Do List" /> */}
         </View>
 
         <View style={marginBox}>

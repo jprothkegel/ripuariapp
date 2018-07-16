@@ -1,6 +1,7 @@
 import firebaseService from '../../config/Firebase'
 import * as types from './actionsTypes'
 
+
 export const restoreSession = () => dispatch => {
     dispatch(sessionLoading());
     dispatch(sessionRestoring());
@@ -30,11 +31,21 @@ export const restoreSession = () => dispatch => {
   
   export const signupUser = (email, password) => dispatch => {
     dispatch(sessionLoading());
-  
+
     firebaseService
       .auth()
       .createUserWithEmailAndPassword(email, password)
       .then(user => {
+        console.log(user)
+        firebaseService.database().ref('users/' + user.user.uid).set({
+          email: user.user.email,
+          uid: user.user.uid,
+          username: user.user.displayName
+        }).then(() => {
+          console.log("Todo Bien")
+        }).catch(error => {
+          console.log(error)
+        })
         dispatch(signupSuccess(user));
       })
       .catch(error => {
