@@ -41,10 +41,10 @@ export const restoreSession = () => dispatch => {
           email: user.user.email,
           uid: user.user.uid,
           username: user.user.displayName
-        }).then(() => {
-          console.log("Todo Bien")
-        }).catch(error => {
-          console.log(error)
+        })
+        firebaseService.database().ref('users/' + user.user.uid + '/beers/').set({
+          cantCervezas: 0,
+          deudaTotal: 0
         })
         dispatch(signupSuccess(user));
       })

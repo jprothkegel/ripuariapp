@@ -9,6 +9,7 @@ import HomeContainer from "../../containers/home/homeContainer";
 import SessionContainer from "../../containers/session/sessionContainer";
 import SignupContainer from "../../containers/session/signupContainer";
 // import TodolistContainer from "../../containers/todolist/todolistContainer";
+import BeerContainer from '../../containers/beer/beerContainer';
 
 import { RouterRedux } from "../../containers/routes/routesContainer";
 import { configureStore } from "../../store/store";
@@ -33,6 +34,7 @@ export class Routes extends React.Component {
             />
             <Scene key="signup" component={SignupContainer} title="Signup" />
             <Scene key="home" component={HomeContainer} title="Home" />
+            <Scene key="beer" component={BeerContainer} title="Beer" />
             {/* <Scene key="search" component={SearchContainer} title="Search" /> */}
             {/* <Scene key="counter" component={CounterContainer} title="Counter" /> */}
             {/* <Scene
