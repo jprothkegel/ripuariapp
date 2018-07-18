@@ -10,8 +10,7 @@ const mapStateToProps = ({ routes, sessionReducer }) => ({
 });
 
 const mapDispatchToProps = {
-  logout: logoutUser,
-  retrieve: retrieveData
+  logout: logoutUser
 };
 
 export default connect(

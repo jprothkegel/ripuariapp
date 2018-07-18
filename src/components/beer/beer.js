@@ -8,20 +8,34 @@ import styles from '../loadingIndicator/styles';
 
 
 export class Beer extends React.Component{
+    componentDidMount() {
+        this.props.retrieve()
+    }
+
     render (){
-        const {add, retrieve, loading} = this.props
+        const {add, loading} = this.props
         const {
             datos: {cantCervezas, deudaTotal}
         } = this.props
         return (
             <Container>
-                <Button 
+                {/* <Button 
                 block 
                 style = {styles2.button}
                 onPress = {add}
                 >
                     <Text>Pedir Cerveza</Text>
+                </Button> */}
+
+                <Button 
+                block 
+                style = {styles2.button}
+                onPress = {this._showAlert}
+                >
+                    <Text>Pedir Cerveza</Text>
                 </Button>
+
+
 
                 <Content padder>
                     <Card>
@@ -68,6 +82,17 @@ export class Beer extends React.Component{
         // </KeyboardAwareScrollView>
         )
     }
+    _showAlert = () => {
+        Alert.alert(
+          'Pedir Cerveza',
+          '¿Estás seguro?',
+          [
+            {text: 'Sí', onPress: () => this.props.add()},
+            {text: 'No', onPress: () => console.log('Dijo No')},
+          ],
+          { cancelable: false }
+        )
+      }
 }
 
 const styles2 = {
@@ -86,3 +111,4 @@ const styles2 = {
         height: 85
     }
 }
+
