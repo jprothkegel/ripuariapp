@@ -1,19 +1,18 @@
 import React from 'react'
-import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { View, Alert, Image } from "react-native";
 import { LoadingIndicator } from "../loadingIndicator/loadingIndicator";
 import { Container, Header, Content, Card, CardItem, Input, Label, Button, Text, Right, Title, Body, Icon } from 'native-base';
-import styles from '../loadingIndicator/styles';
 
 
 
-export class Beer extends React.Component{
+
+export class BeerComponent extends React.Component{
     componentDidMount() {
         this.props.retrieve()
     }
 
     render (){
-        const {add, loading} = this.props
+        const {loading} = this.props
         const {
             datos: {cantCervezas, deudaTotal}
         } = this.props

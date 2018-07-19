@@ -16,6 +16,8 @@ const beerReducer = (state = initialState, action) => {
             return {...state, error: action.error}
         case types.RETRIEVED_SUCCESS:
             return {...state, loading: false, datos: action.datos}
+        case types.BEER_LOGOUT:
+            return initialState
         default: 
             return state
     }

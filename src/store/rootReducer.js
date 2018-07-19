@@ -1,15 +1,20 @@
 import { combineReducers } from "redux";
 
 import routesReducer from "../reducers/routes/routesReducer";
-//import counterReducer from "../reducers/counter/counterReducer";
 import sessionReducer from "../reducers/session/sessionReducer";
-//import todolistReducer from "../reducers/todolist/todolistReducer";
 import beerReducer from '../reducers/beer/beerReducer';
 
-export default combineReducers({
+const appReducer = combineReducers({
   routesReducer,
-  //counterReducer,
   sessionReducer,
-  //todolistReducer
   beerReducer
-});
+})
+
+const rootReducer = (state, action) => {
+  if (action.type === 'SESSION_LOGOUT'){
+    state = undefined
+  }
+  return appReducer(state, action)
+}
+
+export default rootReducer

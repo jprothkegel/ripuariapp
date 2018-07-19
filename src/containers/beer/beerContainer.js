@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { Beer } from '../../components/beer/beer'
+import { Beer, BeerComponent } from '../../components/beer/beer'
 
 import { addBeer, retrieveData } from '../../actions/beer/actions';
 
@@ -18,4 +18,4 @@ const mapDispatchToProps = {
     retrieve: retrieveData
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Beer);
+export default connect(mapStateToProps, mapDispatchToProps)(BeerComponent);

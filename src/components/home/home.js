@@ -9,7 +9,7 @@ export class Home extends React.Component {
     this.props.logout();
     setTimeout(() => {
       Actions.reset("login");
-    }, 100);
+    }, 300);
   };
 
   render() {
@@ -24,14 +24,14 @@ export class Home extends React.Component {
         </View>
 
         <View>
-          <Text style={title}>User: {email}</Text>
+          {/* <Text style={title}>User: {email}</Text> */}
           {/* <Button onPress={Actions.search} title="Go to Search" />
           <Button onPress={Actions.todolist} title="Start To-Do List" /> */}
           <Button onPress={Actions.beer} title="Go to Beer" />
         </View>
 
         <View style={marginBox}>
-          <Text>@skantus</Text>
+          <Text>Ripuaria</Text>
         </View>
       </View>
     );
