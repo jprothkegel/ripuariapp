@@ -8,6 +8,8 @@ import SessionContainer from "../../containers/session/sessionContainer";
 import SignupContainer from "../../containers/session/signupContainer";
 import BeerContainer from '../../containers/beer/beerContainer';
 
+import LogoutButton from '../logoutButton/logoutButton';
+
 import { RouterRedux } from "../../containers/routes/routesContainer";
 import { configureStore } from "../../store/store";
 
@@ -21,6 +23,7 @@ export class Routes extends React.Component {
           navigationBarStyle={styles.navBar}
           tintColor="#ffffff"
           titleStyle={styles.barButtonTextStyle}
+          renderRightButton={<LogoutButton/>}
         >
           <Scene key="root">
             <Scene
@@ -31,7 +34,7 @@ export class Routes extends React.Component {
             />
             <Scene key="signup" component={SignupContainer} title="Signup" />
             <Scene key="home" component={HomeContainer} title="Home" />
-            <Scene key="beer" component={BeerContainer} title="Beer" />
+            <Scene key="beer" component={BeerContainer} title="Beer"/>
           </Scene>
         </RouterRedux>
       </Provider>
