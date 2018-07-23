@@ -1,0 +1,6 @@
+{
+  "projects": {
+    "default": "ripuariapp-react",
+    "ripuaria-react": "ripuariapp-react"
+  }
+}

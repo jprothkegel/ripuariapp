@@ -4,8 +4,6 @@ import { LoadingIndicator } from "../loadingIndicator/loadingIndicator";
 import { Container, Header, Content, Card, CardItem, Input, Label, Button, Text, Right, Title, Body, Icon } from 'native-base';
 
 
-
-
 export class BeerComponent extends React.Component{
     componentDidMount() {
         this.props.retrieve()
