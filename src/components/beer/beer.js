@@ -16,14 +16,6 @@ export class BeerComponent extends React.Component{
         } = this.props
         return (
             <Container>
-                {/* <Button 
-                block 
-                style = {styles2.button}
-                onPress = {add}
-                >
-                    <Text>Pedir Cerveza</Text>
-                </Button> */}
-
                 <Button 
                 block 
                 style = {styles2.button}
@@ -60,23 +52,6 @@ export class BeerComponent extends React.Component{
                     </Card>
                 </Content>
             </Container>
-        // <KeyboardAwareScrollView>
-        //     <Button 
-        //         title = 'Add Beer'
-        //         onPress = {add}
-        //     />
-        //     <Button 
-        //         title = 'Actualizar'
-        //         onPress = {retrieve}    
-        //     />
-        //     <Text>Cantidad de Cervezas</Text>
-        //     {loading ? ( <LoadingIndicator color="#ffffff" size="large" />
-        //     ):(<Text>{cantCervezas}</Text>)}
-
-        //     <Text>Deuda Total</Text>
-        //     {loading ? (<LoadingIndicator color="#ffffff" size="large" />
-        //     ): (<Text>{deudaTotal}</Text>)}
-        // </KeyboardAwareScrollView>
         )
     }
     _showAlert = () => {

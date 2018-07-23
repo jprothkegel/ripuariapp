@@ -10,6 +10,7 @@ import BeerContainer from '../../containers/beer/beerContainer';
 
 import LogoutButton from '../logoutButton/logoutButton';
 import AdminList from '../admin/adminList';
+import AdminDetail from '../admin/adminDetail';
 
 import { RouterRedux } from "../../containers/routes/routesContainer";
 import { configureStore } from "../../store/store";
@@ -37,6 +38,7 @@ export class Routes extends React.Component {
             <Scene key="home" component={HomeContainer} title="Home" />
             <Scene key="beer" component={BeerContainer} title="Beer"/>
             <Scene key="list" component={AdminList} title="List"/>
+            <Scene key="detail" component={AdminDetail} title="Detail"/>
           </Scene>
         </RouterRedux>
       </Provider>

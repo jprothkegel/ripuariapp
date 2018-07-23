@@ -1,28 +1,30 @@
 import React, { Component } from 'react';
-import { Container, Header, Content, List, ListItem, Text } from 'native-base';
+import { Container, Header, Content, List, ListItem, Text, Button, Right, Left } from 'native-base';
 import { LoadingIndicator } from "../loadingIndicator/loadingIndicator";
 
 import {connect} from 'react-redux';
 import {Actions} from 'react-native-router-flux';
 
-import {retrieveList} from '../../actions/admin/actions';
+import {retrieveList, retrieveUser} from '../../actions/admin/actions';
 
 const mapStateToProps = ({
   routes,
-  listReducer: {loading, datos, error}
+  listReducer: {loading, datos, error, detalle}
 }) => ({
   routes: routes,
   loading: loading,
   datos: datos,
+  detalle: detalle,
   error: error
 })
 
 const mapDispatchToProps = {
-  retrieve: retrieveList
+  retrieve: retrieveList,
+  retrieveUser: retrieveUser
 }
 
 class AdminList extends Component {
-  componentDidMount() {
+  componentDidMount(){
     this.props.retrieve()
   }
   render() {
@@ -34,12 +36,28 @@ class AdminList extends Component {
           {loading ? (<LoadingIndicator color="#000" size="large" />):(<List dataArray={datos}
             renderRow={(dato) =>
               <ListItem
-                onPress={()=>console.log('datos',this.props.datos)}
               >
+                <Left>
                 <Text>{dato.email}</Text>
+                </Left>
+                
+                <Right>
+                  <Text>${dato.deudaTotal}</Text>
+                  <Button
+                    style = {styles2.redButton}
+                    onPress={()=>{Actions.detail(), this.props.retrieveUser(dato.id, dato.email, dato.cantCervezas, dato.deudaTotal)}}
+                  >
+                    <Text>View</Text>
+                  </Button>
+                </Right>
               </ListItem>
             }>
           </List>)}
+          <Button 
+          onPress = {()=>this.props.retrieve()}
+          block style={styles2.redButton} >
+            <Text>Actualizar</Text>
+          </Button>
           
         </Content>
       </Container>
@@ -48,3 +66,24 @@ class AdminList extends Component {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(AdminList)
+const styles2 = {
+  redButton: {
+      marginTop: 10,
+      marginRight: 5,
+      marginLeft: 5,
+      backgroundColor: '#ff4c4c'
+  },
+  greenButton: {
+      marginTop: 10,
+      marginRight: 5,
+      marginLeft: 5,
+      backgroundColor: '#88cc88'
+  },
+  text: {
+      fontSize: 24,
+  },
+  marginBox: {
+      alignItems: "center",
+      margin: 20
+  }
+}
