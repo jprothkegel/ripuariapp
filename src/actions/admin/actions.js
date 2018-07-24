@@ -33,6 +33,12 @@ export const retrieveUser = (id, user, cantCervezas, deudaTotal) => dispatch => 
     dispatch(detailSuccess(datos));
 }
 
+export const deleteUser = (id) => dispatch => {
+    firebaseService.database().ref('users/'+id).remove().then(()=>{
+        dispatch(deletionSuccess())
+    })
+}
+
 export const payBeer = (id, user) => dispatch => {
     
     let datos;
@@ -73,4 +79,8 @@ const detailSuccess = datos => ({
 
 const payedSuccess = () => ({
     type: types.PAYED_SUCCESS,
+})
+
+const deletionSuccess = () => ({
+    type: types.DELETION_SUCCESS,
 })

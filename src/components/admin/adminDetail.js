@@ -21,9 +21,22 @@ const mapStateToProps = ({
   })
 
 class AdminDetail extends React.Component{
+    convertEmailToName = (email) => {
+        try {
+          email = email.split('@')[0].split('.');
+          nombre = email[0].charAt(0).toUpperCase() + email[0].slice(1)
+          apellido = email[1].charAt(0).toUpperCase() + email[1].slice(1)
+          username = nombre + ' ' + apellido
+          return username
+        }
+        catch(error){
+          return email
+        }
+      }
+
     onShare (){
         const content = {
-            message: 'Estimado '+this.props.detalle.user + ' debes $' + this.props.detalle.deudaTotal + ' en cervezas.',
+            message: 'Estimado '+this.convertEmailToName(this.props.detalle.user) + ' debes $' + this.props.detalle.deudaTotal + ' en cervezas.',
             title: 'Cerveza',
         }
         const option = { dialogTitle: 'Pagar Cervezas'}
@@ -40,6 +53,8 @@ class AdminDetail extends React.Component{
           { cancelable: false }
         )
       }
+
+      
     render(){
         return(
             <Container>
@@ -47,7 +62,7 @@ class AdminDetail extends React.Component{
                     <View style={styles2.marginBox} >
                     {this.props.loading ? (<LoadingIndicator color="#000" size="large" />):(<Text
                         style={styles2.text}
-                    >{this.props.detalle.user}</Text>)}
+                    >{this.convertEmailToName(this.props.detalle.user)}</Text>)}
                     
                     </View>
                     <Card>
@@ -83,7 +98,7 @@ class AdminDetail extends React.Component{
                         style={styles2.redButton}
                         onPress = {()=>this._showAlert()}
                     >
-                        <Text>Borrar</Text>
+                        <Text>Borrar Deuda</Text>
                     </Button>
                 </Content>
             </Container>

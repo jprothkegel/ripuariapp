@@ -17,6 +17,8 @@ const listReducer = (state = initialState, action) => {
             return{...state, loading:false, detalle:action.datos}
         case types.PAYED_SUCCESS:
             return{...state, loading:false}
+        case types.DELETION_SUCCESS:
+            return{...state}
         default:
             return state
     }
