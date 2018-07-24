@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { View, Button, Image, Text } from "react-native";
+import { View, Button, Image, Text, StyleSheet } from "react-native";
 import { styles } from "./styles";
 import { Actions } from "react-native-router-flux";
 import { LoadingIndicator } from "../loadingIndicator/loadingIndicator";
@@ -12,6 +12,11 @@ export class Home extends React.Component {
     }, 300);
   };
 
+  componentDidMount(){
+    this.props.getType()
+    console.log("TIPOOO: ",this.props.userType)
+  }
+
   render() {
     const { container, marginBox, title } = styles;
     const {
@@ -20,15 +25,29 @@ export class Home extends React.Component {
     return (
       <View style={container}>
         <View style={marginBox}>
-          <Button onPress={this.logout} title="Logout" />
+          <Image 
+          style={styles2.imagen}
+          source={require('../../../assets/icons/ripuaria.png')} />
         </View>
 
         <View>
-          {/* <Text style={title}>User: {email}</Text> */}
+          
           {/* <Button onPress={Actions.search} title="Go to Search" />
           <Button onPress={Actions.todolist} title="Start To-Do List" /> */}
-          <Button onPress={Actions.beer} title="Go to Beer" />
-          <Button onPress={Actions.list} title="Go to Admin" />
+          {this.props.userType === '' ?
+           (<View><Text style={title}>User: {email}</Text><LoadingIndicator color="#000" size="large" /></View>): 
+           this.props.userType === 'admin' ? 
+           (<View><Text style={title}>User: {email}</Text><Button onPress={Actions.list} title="Go to Admin" />
+           <Button onPress={Actions.signup} title="Go to SignUp" /></View>):
+           (<View><Text style={title}>User: {email}</Text><Button onPress={Actions.beer} title="Go to Beer" /></View>)}
+          
+          {/* {this.props.userType === '' ? 
+          (<LoadingIndicator color="#000" size="large" />): 
+          this.props.userType === 'admin' ? 
+          (<Button onPress={Actions.signup} title="Go to Signup" />):(<Button onPress={Actions.beer} title="Go to Beer" />)} */}
+
+          {/* {this.props.userType === 'admin' ? (<Button onPress={Actions.list} title="Go to Admin" /><Button onPress={Actions.beer} title="Go to Beer" />)):(} */}
+          
         </View>
 
         <View style={marginBox}>
@@ -38,3 +57,10 @@ export class Home extends React.Component {
     );
   }
 }
+
+const styles2 = StyleSheet.create({
+  imagen: {
+    width: 350,
+    height: 350
+  }
+})

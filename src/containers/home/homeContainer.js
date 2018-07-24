@@ -1,15 +1,17 @@
 import { connect } from "react-redux";
 import { Home } from "../../components/home/home";
 
-import { logoutUser } from "../../actions/session/actions";
+import { logoutUser, getType } from "../../actions/session/actions";
 
 const mapStateToProps = ({ routes, sessionReducer }) => ({
   routes: routes,
-  user: sessionReducer.user
+  user: sessionReducer.user,
+  userType: sessionReducer.userType
 });
 
 const mapDispatchToProps = {
-  logout: logoutUser
+  logout: logoutUser,
+  getType: getType
 };
 
 export default connect(

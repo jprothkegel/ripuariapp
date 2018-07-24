@@ -9,9 +9,6 @@ import { Actions } from "react-native-router-flux";
 const FIREBASE_LOGO = require("../../../../assets/icons/ripuaria.png");
 
 export class SignupFormComponent extends React.Component {
-  componentDidUpdate(prevProps) {
-    if (this.props.registered) Actions.reset("home");
-  }
 
   render() {
     const { signup, loading } = this.props;

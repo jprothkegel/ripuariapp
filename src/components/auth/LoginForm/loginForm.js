@@ -12,7 +12,6 @@ export class LoginFormComponent extends React.Component {
   componentDidMount() {
     this.props.restore();
   }
-
   componentDidUpdate(prevProps) {
     const { error, logged } = this.props;
 
@@ -34,11 +33,6 @@ export class LoginFormComponent extends React.Component {
             <LoadingIndicator color="#ffffff" size="large" />
           ) : (
             <BasicFormComponent buttonTitle={"Login"} onButtonPress={login} />
-          )}
-        </View>
-        <View>
-          {loading ? null : (
-            <Button onPress={Actions.signup} title="Signup" color="white" />
           )}
         </View>
       </KeyboardAwareScrollView>

@@ -6,7 +6,8 @@ const initialState = {
   user: {},
   error: null,
   logged: null,
-  registered: null
+  registered: null,
+  userType: ''
 };
 
 const sessionReducer = (state = initialState, action) => {
@@ -30,7 +31,6 @@ const sessionReducer = (state = initialState, action) => {
         ...state,
         restoring: false,
         loading: false,
-        user: action.user,
         error: null,
         logged: null,
         registered: true
@@ -47,6 +47,8 @@ const sessionReducer = (state = initialState, action) => {
       };
     case types.SESSION_LOGOUT:
       return initialState;
+    case types.RETRIEVE_TYPE:
+      return{...state, userType: action.userType, loading: false}
     default:
       return state;
   }

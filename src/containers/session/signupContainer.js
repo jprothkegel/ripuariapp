@@ -4,12 +4,11 @@ import { signupUser } from "../../actions/session/actions";
 
 const mapStateToProps = ({
   routes,
-  sessionReducer: { loading, error, registered }
+  sessionReducer: { loading, error }
 }) => ({
   routes: routes,
   loading: loading,
   error: error,
-  registered: registered
 });
 
 const mapDispatchToProps = {
