@@ -46,9 +46,10 @@ class AdminDetail extends React.Component{
         Alert.alert(
           'Borrar Deuda',
           '¿Estás seguro?',
-          [
-            {text: 'Sí', onPress: () => this.props.pay(this.props.detalle.id, this.props.detalle.user)},
+          [ 
             {text: 'No', onPress: () => console.log('Dijo No')},
+            {text: 'Sí', onPress: () => this.props.pay(this.props.detalle.id, this.props.detalle.user)},
+            
           ],
           { cancelable: false }
         )

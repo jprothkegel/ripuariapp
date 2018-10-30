@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { Container, Header, Content, List, ListItem, Text, Button, Right, Left, Label, Form, Input, Item } from 'native-base';
+import { Container, Header, Content, List, ListItem, Text, Button, Right, Left, Label, Form, Input, Item} from 'native-base';
 import { LoadingIndicator } from "../loadingIndicator/loadingIndicator";
-
+import { Col, Row, Grid } from 'react-native-easy-grid';
 import {connect} from 'react-redux';
 import {Actions} from 'react-native-router-flux';
 
@@ -30,15 +30,14 @@ const mapDispatchToProps = {
 class AdminList extends Component {
   state = { inventory:0 }
 
-  handleInventoryChange = inventory => {
-    this.setState({ inventory })
-  }
-
   componentDidMount(){
     this.props.retrieve(),
     this.props.retrieveInventory()
   }
-
+  
+  handleInventoryChange = inventory => {
+    this.setState({ inventory })
+  }
   convertEmailToName = (email) => {
     try {
       email = email.split('@')[0].split('.');
@@ -60,6 +59,7 @@ class AdminList extends Component {
   updateButton(inv){
     this.props.retrieve();
     this.props.updateInventory(inv);
+    this.props.retrieveInventory();
   }
 
   render() {
@@ -68,39 +68,62 @@ class AdminList extends Component {
     return (
       <Container>
         <Content>
-        <Form>
-          <Item stackedLabel>
-            <Label>Inventario</Label>
-            <Input onChangeText={this.handleInventoryChange}>{this.props.inv}</Input>
-          </Item>
-        </Form>
-        <Button 
-          onPress = {()=>this.updateButton(this.state.inventory)}
-          block style={styles2.redButton} >
-            <Text>Actualizar</Text>
-          </Button>
-          {loading ? (<LoadingIndicator color="#000" size="large" />):(<List dataArray={datos}
-            renderRow={(dato) =>
-              <ListItem
-              onPress={()=>{Actions.detail(),this.props.inventory(), this.props.retrieveUser(dato.id, dato.email, dato.cantCervezas, dato.deudaTotal)}}
-              >
-                <Left>
-                <Text>{this.convertEmailToName(dato.email)}</Text>
-                </Left>
-                
-                <Right>
-                  <Text>${dato.deudaTotal}</Text>
-                  <Button
-                    style = {styles2.redButton}
-                    onPress={()=>{this.successDeleted(dato.id)}}
-                  >
-                    <Text style={styles2.buttonText} >Eliminar Usuario</Text>
-                  </Button>
-                  
-                </Right>
-              </ListItem>
-            }>
-          </List>)}
+          <Grid>
+            <Row>
+              <Col size={3} >
+                <Form>
+                  <Item stackedLabel>
+                    <Label>Inventario</Label>
+                    <Input onChangeText={this.handleInventoryChange}>{this.props.inv}</Input>
+                  </Item>
+                </Form>
+              </Col>
+              <Col size={1} >
+                <Button onPress={()=> this.props.updateInventory(this.state.inventory)} style = {styles2.redButton}>
+                  <Text style={styles2.buttonText} >Actualizar Inventario</Text>
+                </Button>
+              </Col>
+            </Row>
+
+            <Row>
+              <Col size={4}>
+                <Button 
+                  onPress = {()=>this.props.retrieve()}
+                  block style={styles2.redButton} >
+                  <Text>Actualizar</Text>
+                </Button>
+              </Col>
+              
+            </Row>
+            <Row>
+                {loading ? (<LoadingIndicator color="#000" size="large" />):(<List dataArray={datos}
+                  renderRow={(dato) =>
+                    <ListItem
+                    onPress={()=>{Actions.detail(), this.props.retrieveUser(dato.id, dato.email, dato.cantCervezas, dato.deudaTotal)}}
+                    >
+                      <Left>
+                      <Text>{this.convertEmailToName(dato.email)}</Text>
+                      </Left>
+                      
+                      <Right>
+                        <Text>${dato.deudaTotal}</Text>
+                        <Button
+                          style = {styles2.redButton}
+                          onPress={()=>{this.successDeleted(dato.id)}}
+                        >
+                          <Text style={styles2.buttonText} >Eliminar Usuario</Text>
+                        </Button>
+                        
+                      </Right>
+                    </ListItem>
+                  }>
+                </List>)}
+
+            </Row>
+            
+          </Grid>
+        
+        
         </Content>
       </Container>
     );

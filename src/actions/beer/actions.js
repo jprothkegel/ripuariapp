@@ -6,13 +6,23 @@ export const addBeer = () => dispatch => {
     const beerValue = 1200
     let datos = {cantCervezas: 0, deudaTotal: 0}
     let user = firebaseService.auth().currentUser;
+    let inventory
     if (user){
+        firebaseService.database().ref('/data').once('value', function(snapshot){
+            inventory = snapshot.val().inventory
+        }).then(()=>{
+            firebaseService.database().ref('/data').set({
+                inventory: inventory - 1
+            })
+        })
+
         firebaseService.database().ref('users/'+user.uid+'/beers/').once('value', function(snapshot){
             datos.cantCervezas = snapshot.val().cantCervezas
             datos.deudaTotal = snapshot.val().deudaTotal
         }).then(()=>{
             datos.cantCervezas = datos.cantCervezas + 1
             datos.deudaTotal = datos.cantCervezas*beerValue
+
             firebaseService.database().ref('users/'+user.uid+'/beers/').set({
                 cantCervezas: datos.cantCervezas,
                 deudaTotal: datos.deudaTotal

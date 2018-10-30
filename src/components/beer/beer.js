@@ -59,8 +59,9 @@ export class BeerComponent extends React.Component{
           'Pedir Cerveza',
           '¿Estás seguro?',
           [
-            {text: 'Sí', onPress: () => this.props.add()},
             {text: 'No', onPress: () => console.log('Dijo No')},
+            {text: 'Sí', onPress: () => this.props.add()},
+            
           ],
           { cancelable: false }
         )

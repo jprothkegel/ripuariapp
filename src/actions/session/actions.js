@@ -36,7 +36,7 @@ export const restoreSession = () => dispatch => {
       .auth()
       .createUserWithEmailAndPassword(email, password)
       .then(user => {
-        console.log(user)
+  
         firebaseService.database().ref('users/' + user.user.uid).set({
           email: user.user.email,
           uid: user.user.uid,

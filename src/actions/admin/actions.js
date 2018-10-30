@@ -16,7 +16,6 @@ export const retrieveList = () => dispatch => {
                 deudaTotal: datos3[i]['beers'].deudaTotal
             })
         }
-        console.log(datos)
         dispatch(retrievedSuccess(datos))
     })
 }
@@ -49,7 +48,6 @@ export const payBeer = (id, user) => dispatch => {
         console.log('Succesfully set')
         dispatch(dataLoading());
         firebaseService.database().ref('users/'+id+'/beers/').once('value', function(snapshot){
-            console.log('CANT CERVEZA',snapshot.val().cantCervezas)
             datos = {
                 id: id,
                 user: user,
