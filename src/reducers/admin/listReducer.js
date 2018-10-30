@@ -4,7 +4,8 @@ const initialState = {
     loading: false,
     datos: {},
     detalle :{},
-    error: null
+    error: null,
+    inventory: 0
 }
 
 const listReducer = (state = initialState, action) => {
@@ -19,6 +20,10 @@ const listReducer = (state = initialState, action) => {
             return{...state, loading:false}
         case types.DELETION_SUCCESS:
             return{...state}
+        case types.UPDATED_SUCCESS:
+            return{...state, loading:false}
+        case types.RETRIEVED_INVENTORY:
+            return{...state, loading:false, inventory:action.inventory}
         default:
             return state
     }

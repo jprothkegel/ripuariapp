@@ -63,6 +63,23 @@ export const payBeer = (id, user) => dispatch => {
     })
 }
 
+export const updateInventory = (inv) => dispatch => {
+    firebaseService.database().ref('/data').set({
+        inventory: inv
+    }).then(()=>{
+        dispatch(updatedSuccess())
+    })
+}
+
+export const retrieveInventory = () => dispatch => {
+    let inventory
+    firebaseService.database().ref('/data').once('value', function(snapshot){
+        inventory = snapshot.val().inventory
+    }).then(()=>{
+        dispatch(retrieveInventorySuccess(inventory))
+    })
+}
+
 const dataLoading = () => ({
     type: types.DATA_LOADING
 })
@@ -83,4 +100,13 @@ const payedSuccess = () => ({
 
 const deletionSuccess = () => ({
     type: types.DELETION_SUCCESS,
+})
+
+const updatedSuccess = () => ({
+    type: types.UPDATED_SUCCESS
+})
+
+const retrieveInventorySuccess = inventory => ({
+    type: types.RETRIEVED_INVENTORY,
+    inventory
 })

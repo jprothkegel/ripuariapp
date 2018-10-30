@@ -31,7 +31,6 @@ export const retrieveData = () => dispatch => {
     let datos = {cantCervezas:0, deudaTotal:0}
     let user = firebaseService.auth().currentUser;
     if (user){
-        console.log('QUE WEAA')
             firebaseService.database().ref('users/'+user.uid+'/beers/').once('value', function(snapshot){
                 datos.cantCervezas = snapshot.val().cantCervezas
                 datos.deudaTotal = snapshot.val().deudaTotal
